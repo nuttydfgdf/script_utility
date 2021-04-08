@@ -1,5 +1,6 @@
 @echo off 
 SET /A PORT = %1 
+SET TOKEN = "Bearer ????"
 
 rem netstat -o -n -a | find /i "listening" | findstr ":7920"
 netstat -o -n -a | find /i "listening" | findstr ":%PORT%"
@@ -25,7 +26,7 @@ REM echo The value of parameter 1 is %~1
 set MESSAGE=%~1
 echo "Notification message = %MESSAGE%"
 
-curl -d "message=%MESSAGE%" -H "Content-Type: application/x-www-form-urlencoded" -H "Authorization: Bearer D8sndbiaV2FcjKbGFO1lY2Al0qT9rKK1QY2Weu12PBm" -X POST https://notify-api.line.me/api/notify
+curl -d "message=%MESSAGE%" -H "Content-Type: application/x-www-form-urlencoded" -H "Authorization: %TOKEN%" -X POST https://notify-api.line.me/api/notify
 
 EXIT /B 0
 
